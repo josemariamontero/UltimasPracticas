@@ -113,3 +113,38 @@ Para que se produzca el cambio reiniciaremos oracle y comprobaremos el parámetr
 **7º. Localiza en Enterprise Manager las posibilidades para realizar una auditoría e intenta repetir con dicha herramienta los apartados 1, 3 y 4.**
  
 
+### 
+**8º. Averigua si en Postgres se pueden realizar los apartados 1, 3 y 4.
+Si es así, documenta el proceso adecuadamente.**
+
+Postgresql sí nos permite auditar los inicios de sesión a través del fichero de log postgresql-11-main.log, para comprobarlo, intentaremos usar una tabla 
+con un nombre de usuario que no existe.
+![Captura15](image/captura15.png)
+
+Para auditar las tablas creamos un trigger de ejemplo
+![Captura16](image/captura16.png)
+
+###
+**9º. Averigua si en MySQL se pueden realizar los apartados 1, 3 y 4. Si es así, documenta el proceso adecuadamente.**
+Creamos una base de datos y un usuario para poder realizar las pruebas de funcionamiento.
+![Captura17](image/captura17.png)
+
+Vamos a crear 2 tablas, una será para añadir los registros y la otra tabla servirá para guardar los logs del sistema
+![Captura18](image/captura18.png)
+
+Tras tener las tablas creadas, vamos a crear un trigger que nos permite auditar las tablas, tenemos 3 tipos de trigger: insert, delete y update. En mi caso,
+voy a utilizar el trigger insert. Tras crear el trigger, añadiré un registro a la tabla prueba y a continuación, comprobaré la tabla de logs
+![Captura19](image/captura19.png)
+
+![Captura20](image/captura20.png)
+
+###
+**10º. Averigua las posibilidades que ofrece MongoDB para auditar los cambios que va sufriendo un documento.**
+
+###
+**11º. Averigua si en MongoDB se pueden auditar los accesos al sistema.**
+Para auditar los accesos al sistema en mongodb, usamos lo siguiente 
+~~~
+{ atype: "authenticate","param.db":"<nombrebd>" }
+~~~
+
