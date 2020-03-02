@@ -24,41 +24,43 @@ Comprobamos los números de errores que podemos contemplar
 
 Función para obtener el return code
 ~~~
-create or replace function codigo(p_numero	NUMBER)
-return VARCHAR2
-is 
-	v_mensaje	VARCHAR2(50);
-begin 
-	if p_numero = 1045 then
-		v_mensaje:='No tiene el privilegio "CREATE SESSION"';
-	elsif p_numero = 1017 then
-		v_mensaje:='Usuario/contraseña incorrectos';
-	elsif p_numero = 28000 then 
-		v_mensaje:='Cuenta bloqueada';
-	else
-		v_mensaje:='Error';
-	end if;
-return v_mensaje;
-end codigo;
-/
+SQL> CREATE OR REPLACE FUNCTION codigoerror(p_codigo NUMBER)
+  2  RETURN VARCHAR2
+  3  IS
+  4      v_mensaje VARCHAR2(25);
+  5  BEGIN
+  6  if p_codigo = 1017 then
+  7  v_mensaje:='Usuario/Contraseña incorrecta';
+  8  elsif p_codigo = 28000 then
+  9  v_mensaje:='Cuenta bloqueada';
+ 10  else
+ 11  v_mensaje:='Se desconoce el mensaje de error';
+ 12  end if;
+ 13  RETURN v_mensaje;
+ 14  END codigoerror;
+ 15  /
 
-create or replace procedure ejercicio2
-is
-	cursor c_auditoria
-	is
-	select username,returncode, timestamp
-	from dba_audit_session
-	where action_name = 'LOGON'
-	and returncode != 0;
+Funci¾n creada.
 
-	v_mensaje	VARCHAR2(50);
-begin
-	for i in c_auditoria loop
-		v_mensaje:=codigo(i.returncode);
-		dbms_output.put_line('Usuario: '||i.username||'Código: '||i.returncode||'Fecha: '||i.timestamp||'Mensaje de error: '||v_mensaje);
-	end loop;
-end ejercicio2;
-/
+SQL> create or replace procedure ejercicio2
+  2  is
+  3          cursor c_auditoria
+  4          is
+  5          select username,returncode, timestamp
+  6          from dba_audit_session
+  7          where action_name = 'LOGON'
+  8          and returncode != 0;
+  9
+ 10          v_mensaje       VARCHAR2(50);
+ 11  begin
+ 12          for i in c_auditoria loop
+ 13                  v_mensaje:=codigoerror(i.returncode);
+ 14                  dbms_output.put_line('Usuario: '||i.username||'Código: '||i.returncode||'Fecha: '||i.timestamp||'Mensaje de error: '||v_mensaje);
+ 15          end loop;
+ 16  end ejercicio2;
+ 17  /
+	
+Procedimiento creado.
 ~~~
 
 ###
