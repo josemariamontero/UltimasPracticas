@@ -1,9 +1,9 @@
 ###
-**1º. Realiza una exportación del esquema de SCOTT usando la consola Enterprise Manager, con las siguientes condiciones:
+**1º. Realiza una exportación del esquema de SCOTT usando la consola Enterprise Manager, con las siguientes condiciones:**
 - Exporta tanto la estructura de las tablas como los datos de las mismas.
 - Excluye la tabla DEPT y los empleados cuyo sueldo es inferior a 1000.
 - Programa la operación para dentro de 10 minutos.
-- Genera un archivo de log en el directorio que consideres más oportuno.**
+- Genera un archivo de log en el directorio que consideres más oportuno.
   
 Primero crearemos un directorio y le asignaremos los permisos de lectura y escritura al usuario system
 ![Captura8](images/captura8.png)
