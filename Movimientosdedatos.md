@@ -79,6 +79,10 @@ Con la herramienta gráfica phppgadmin sólo tengo la opción de exportar datos,
 Podemos observar que podemos descargarnos la exportación de forma comprimida con gzip
 ![Captura3](images/captura3.png)
 
+Para importar una exportación sería aquí, daríamos click en examinar y añadiríamos el fichero a importar
+![Captura13](images/captura13.png)
+
+
 ###
 **5º. Exporta todos los documentos de una colección de MongoDB que tengan más de cuatro campos e impórtalos en otra base de datos.**
 Voy a crear en mongo 2 colecciones
